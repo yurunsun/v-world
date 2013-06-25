@@ -256,14 +256,14 @@ L = L * R = I * T * R
 ====3.5.3 组节点ISceneGroupNode====
 除了ISceneBaseNode提供的属性和方法外，主要负责管理子节点：
 
-{{{{
+{{{
 typedef std::map<CString, ISceneBaseNode*> NodeTable;
 void AddChild(ISceneBaseNode* a_Child);
 ISceneBaseNode* GetChild(const CString& a_Name) const;
 const NodeTable& GetChildren() const;
 void RemoveChild(ISceneBaseNode* a_Child);
 void RemoveChild(const CString& a_Name);
-}}}}
+}}}
 
 使用map管理子节点是经典模式之一，不做累述。
 
