@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VirtualWorld", "VirtualWorld\VirtualWorld.vcxproj", "{78535E73-86A4-4777-B072-26DE347FF171}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VWViewer", "VWViewer\VWViewer.vcxproj", "{70EC8662-666F-4C7D-848A-D939722F84D2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{78535E73-86A4-4777-B072-26DE347FF171} = {78535E73-86A4-4777-B072-26DE347FF171}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glm", "VirtualWorld\ThirdParty\glm\glm.vcxproj", "{A47BB589-E335-485A-93EA-AD915151435A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lib3ds", "VirtualWorld\ThirdParty\lib3ds\lib3ds.vcxproj", "{CD67035C-DA8A-4985-81F5-FCEF5D5DFD11}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{78535E73-86A4-4777-B072-26DE347FF171}.Debug|Win32.ActiveCfg = Debug|Win32
+		{78535E73-86A4-4777-B072-26DE347FF171}.Debug|Win32.Build.0 = Debug|Win32
+		{78535E73-86A4-4777-B072-26DE347FF171}.Release|Win32.ActiveCfg = Release|Win32
+		{78535E73-86A4-4777-B072-26DE347FF171}.Release|Win32.Build.0 = Release|Win32
+		{70EC8662-666F-4C7D-848A-D939722F84D2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{70EC8662-666F-4C7D-848A-D939722F84D2}.Debug|Win32.Build.0 = Debug|Win32
+		{70EC8662-666F-4C7D-848A-D939722F84D2}.Release|Win32.ActiveCfg = Release|Win32
+		{70EC8662-666F-4C7D-848A-D939722F84D2}.Release|Win32.Build.0 = Release|Win32
+		{A47BB589-E335-485A-93EA-AD915151435A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A47BB589-E335-485A-93EA-AD915151435A}.Debug|Win32.Build.0 = Debug|Win32
+		{A47BB589-E335-485A-93EA-AD915151435A}.Release|Win32.ActiveCfg = Release|Win32
+		{A47BB589-E335-485A-93EA-AD915151435A}.Release|Win32.Build.0 = Release|Win32
+		{CD67035C-DA8A-4985-81F5-FCEF5D5DFD11}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CD67035C-DA8A-4985-81F5-FCEF5D5DFD11}.Debug|Win32.Build.0 = Debug|Win32
+		{CD67035C-DA8A-4985-81F5-FCEF5D5DFD11}.Release|Win32.ActiveCfg = Release|Win32
+		{CD67035C-DA8A-4985-81F5-FCEF5D5DFD11}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
