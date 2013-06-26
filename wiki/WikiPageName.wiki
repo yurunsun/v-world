@@ -47,7 +47,7 @@ D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\atlmfc\include\
 ===2.2 运行===
 Debug与Release模式下编译的目标文件分别放置于\BinDebug\与\BinRelease\目录。其中VirtualWorld.dll为V-World lib, VWViewer.exe为使用V-World库开发的示例程序：3D模型查看器
 
-[http://img.blog.csdn.net/20130625222640312]
+http://www3.picturepush.com/photo/a/13410906/img/Blog/shotcut.jpg
 
 
 ==3. 使用V-World Lib开发图形软件==
