@@ -75,7 +75,8 @@ public:
 	virtual void				OnKeyUp(unsigned nChar, unsigned nRepCnt, unsigned nFlags);
 
 protected:
-	bool						DoFileOpen(const CString& a_FilePath);
+	friend DWORD WINAPI			ThreadFuncWrapper(LPVOID lpParam);
+	bool						DoFileOpen();
 	bool						DoAnimate(unsigned a_PerMilliSecond);
 	bool						DoShading();
 	
