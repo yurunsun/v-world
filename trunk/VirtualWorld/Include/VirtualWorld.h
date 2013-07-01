@@ -608,6 +608,7 @@ namespace VirtualWorld
 		static char* CStringToPChar(const CString& str);
 		static CString GetFileSuffix(const CString& str);
 		static CString GetFileName(const CString& str);
+		static CString PathToUnixStyle(const CString& str);
 	};
 }
 

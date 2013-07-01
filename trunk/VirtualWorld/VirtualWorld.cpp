@@ -9,8 +9,7 @@
 #include "SceneGraph/SceneCameraNode.h"
 #include "SceneGraph/SceneLightNode.h"
 #include "Geometry/GeometryCommonObject.h"
-#include "Geometry/GeometryOBJObject.h"
-#include "Geometry/Geometry3DSObject.h"
+#include "Geometry/GeometryModelObject.h"
 #include "Appearance/Material.h"
 
 using namespace VirtualWorld;
@@ -65,12 +64,7 @@ IGeometryCylinderObject* CFactory::CreateGeometryCylinderObject()
 //-----------------------------------------------------------------------//
 IGeometryModelObject* CFactory::CreateGeometryModelObject( const CString& a_FileType )
 {
-	if (a_FileType.CompareNoCase(_T("OBJ")) == 0) {
-		return new CGeometryOBJObject();	
-	} else if (a_FileType.CompareNoCase(_T("3DS")) == 0) {
-		return new CGeometry3DSObject();
-	}
-	return NULL;
+	return new CGeometryModelObject();
 }
 //-----------------------------------------------------------------------//
 IMaterial* CFactory::CreateMaterial()
@@ -99,5 +93,12 @@ CString VirtualWorld::CUtility::GetFileSuffix( const CString& str )
 CString VirtualWorld::CUtility::GetFileName( const CString& str )
 {
 	return str.Right(str.GetLength() - str.ReverseFind(_T('\\')) - 1);
+}
+//-----------------------------------------------------------------------//
+CString CUtility::PathToUnixStyle( const CString& str )
+{
+	CString ret = str;
+	ret.Replace(_T("\\"), _T("/"));
+	return ret;
 }
 //-----------------------------------------------------------------------//

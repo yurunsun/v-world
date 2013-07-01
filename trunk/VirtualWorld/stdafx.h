@@ -28,12 +28,9 @@
 #include <map>
 
 #include "Window/atlopengl.h"
-#include "ThirdParty/glm/glm.h"
 
-#include "ThirdParty/lib3ds/file.h"
-#include "ThirdParty/lib3ds/light.h"
-#include "ThirdParty/lib3ds/mesh.h"
-#include "ThirdParty/lib3ds/matrix.h"
-#include "ThirdParty/lib3ds/material.h"
-#include "ThirdParty/lib3ds/node.h"
-#include "ThirdParty/lib3ds/types.h"
+#include <ThirdParty/assimp/cimport.h>
+#include <ThirdParty/assimp/scene.h>
+#include <ThirdParty/assimp/postprocess.h>
+#include <ThirdParty/assimp/matrix4x4.h>
+#include <ThirdParty/assimp/vector3.h>
