@@ -156,6 +156,15 @@ namespace VirtualWorld
 	}
 	//-----------------------------------------------------------------------//
 	template <class T>
+	inline void VirtualWorld::CVector4<T>::Set( T a_X /*= 0*/, T a_Y /*= 0*/, T a_Z /*= 0*/, T a_W /*= 1*/ )
+	{
+		x = a_X;
+		y = a_Y;
+		z = a_Z;
+		w = a_W;
+	}
+	//-----------------------------------------------------------------------//
+	template <class T>
 	inline CVector3<T>::CVector3(T a_x, T a_y, T a_z)
 		: x (a_x), y (a_y), z (a_z)
 	{}
@@ -1244,9 +1253,9 @@ namespace VirtualWorld
 	}
 	//-----------------------------------------------------------------------//
 	inline ISceneLightNode::ISceneLightNode()
-		: m_Ambient(0.0f, 0.0f, 0.0f, 1.0f)
-		, m_Diffuse(1.0f, 1.0f, 1.0f, 1.0f)
-		, m_Specular(1.0f, 1.0f, 1.0f, 1.0f)
+		: m_Ambient(0.2f, 0.2f, 0.2f, 1.0f)
+		, m_Diffuse(0.4f, 0.4f, 0.4f, 1.0f)
+		, m_Specular(0.2f, 0.2f, 0.2f, 1.0f)
 		, m_Position(0.0f, 0.0f, 1.0f, 0.0f)
 		, m_SpotDirection(0.0f, 0.0f, -1.0f)
 		, m_SpotExponent(0.0f)

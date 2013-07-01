@@ -11,6 +11,21 @@
 #include "NodeTreeDlg.h"
 
 using namespace VirtualWorld;
+using namespace std;
+
+stack<CString> g_filePaths;
+
+DWORD WINAPI ThreadFuncWrapper(LPVOID lpParam) 
+{
+	if (lpParam != NULL) {
+		CMainFrame* pThis = reinterpret_cast<CMainFrame*>(lpParam);
+		if (pThis != NULL) {
+			bool ret =  pThis->DoFileOpen();
+			return (ret == true) ? S_OK : S_FALSE;
+		}
+	}
+	return S_FALSE;
+}
 
 CMainFrame::CMainFrame()
 	: m_LastTickCount(GetTickCount())
@@ -25,7 +40,6 @@ CMainFrame::CMainFrame()
 
 CMainFrame::~CMainFrame()
 {
-
 }
 
 BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
@@ -58,12 +72,12 @@ LRESULT CMainFrame::OnCreate(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/
 	
 	ISceneGroupNode* rootNode = pFac->CreateSceneGroupNode();
 	ISceneCameraNode* cameraNode = pFac->CreateSceneCameraNode();
-	ISceneGeometryNode* cubeNode = pFac->CreateSceneGeometryNode();
+	/*ISceneGeometryNode* cubeNode = pFac->CreateSceneGeometryNode();
 	ISceneGeometryNode* sphereNode = pFac->CreateSceneGeometryNode();
-	ISceneGeometryNode* cylinderNode = pFac->CreateSceneGeometryNode();
+	ISceneGeometryNode* cylinderNode = pFac->CreateSceneGeometryNode();*/
 	ISceneLightNode* lightNode = pFac->CreateSceneLightNode();
 
-	IGeometryCubeObject* cubeObj = pFac->CreateGeometryBoxObject();
+	/*IGeometryCubeObject* cubeObj = pFac->CreateGeometryBoxObject();
 	IGeometrySphereObject* sphereObj = pFac->CreateGeometrySphereObject();
 	IGeometryCylinderObject* cylinderObj = pFac->CreateGeometryCylinderObject();
 
@@ -99,11 +113,11 @@ LRESULT CMainFrame::OnCreate(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/
 	cylinderNode->SetGeometryObject(cylinderObj);
 	cylinderNode->Translate(CVector3f(0.0f, 0.0f, -1.0f));
 	cylinderNode->Rotate(0.1f, CVector3f(1.0f, 0.0f, 0.0f));
-	rootNode->AddChild(cylinderNode);
+	rootNode->AddChild(cylinderNode);*/
 
 	lightNode->SetName(_T("light0"));
-	lightNode->SetAmbient(CVector4f(0.4f, 0.4f, 0.4f, 1.0f));
-	lightNode->SetPosition(CVector4f(-1.0f, -1.0f, 1.0f, 0.0f));
+	lightNode->SetAmbient(CVector4f(0.5f, 0.8f, 0.5f, 1.0f));
+	lightNode->SetPosition(CVector4f(0.0f, 0.0f, 1.0f, 0.0f));
 	rootNode->AddChild(lightNode);
 
 	cameraNode->SetName(_T("Camera"));
@@ -177,7 +191,9 @@ LRESULT CMainFrame::OnFileOpen( WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndC
 	OutputDebugString(filePath);
 
 	if (!filePath.IsEmpty()) {
-		DoFileOpen(filePath);
+		g_filePaths.push(filePath);
+		HANDLE hr = CreateThread(NULL, 0, ThreadFuncWrapper, this, 0, NULL);
+		CloseHandle(hr);
 	}
 	return 0;
 }
@@ -275,18 +291,21 @@ LRESULT CMainFrame::OnTimer( UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BO
 	return 0;
 }
 
-bool CMainFrame::DoFileOpen( const CString& a_FilePath )
+bool CMainFrame::DoFileOpen()
 {
-	CString modelType = CUtility::GetFileSuffix(a_FilePath);
+	if (g_filePaths.empty()) {
+		return false;
+	}
+	CString filePath = g_filePaths.top();
+	CString modelType = CUtility::GetFileSuffix(filePath);
 	IGeometryModelObject* objModel = CFactory::GetInstance()->CreateGeometryModelObject(modelType);
 	if (objModel != NULL) {
-		bool hr = objModel->LoadModel(a_FilePath);
+		bool hr = objModel->LoadModel(filePath);
 		if (hr == true)  {
 			objModel->SetDrawMode(IGeometryBaseObject::GEOMETRY_DRAW_SOLID);
-			//objModel->SetNormalMode(IGeometryBaseObject::GEOMETRY_NORMAL_VERTEX);
 			ISceneGeometryNode* gunNode = CFactory::GetInstance()->CreateSceneGeometryNode();
 			gunNode->SetGeometryObject(objModel);
-			m_ModelName = CUtility::GetFileName(a_FilePath);
+			m_ModelName = CUtility::GetFileName(filePath);
 			gunNode->SetName(m_ModelName);
 
 			IBoundingBox* box = objModel->GetBoundingBox();
@@ -296,8 +315,6 @@ bool CMainFrame::DoFileOpen( const CString& a_FilePath )
 
 			float radius = radiusVec.Length();
 			ISceneCameraNode* camera = m_pView->GetActiveCameraNode();
-			//camera->GotoLocalOrigin();
-			//camera->Translate(CVector3f(0.0f, 0.0f, radius));
 			camera->LookAt(CVector3f(0.0f, 0.0f, radius*2), CVector3f(0.0f, 0.0f, 0.0f), CVector3f(0.0f, 1.0f, 0.0f));
 
 			m_pView->GetRootSGNode()->AddChild(gunNode);

@@ -155,6 +155,7 @@ namespace VirtualWorld
 		CVector4<T>					operator /= (const T a_Scale);
 		bool						operator == (const CVector4<T> &a_Right);
 		bool						operator != (const CVector4<T> &a_Right);
+		void						Set(T a_X = 0, T a_Y = 0, T a_Z = 0, T a_W = 1);
 	};
 	typedef CVector4<int   >		CVector4i;
 	typedef CVector4<float >		CVector4f;
