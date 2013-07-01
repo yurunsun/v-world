@@ -1,5 +1,9 @@
-﻿Build started 2013/6/24 22:31:07.
+﻿Build started 2013/7/1 21:55:52.
+     1>Project "E:\project\v-world\VirtualWorld\VirtualWorld.vcxproj" on node 3 (clean target(s)).
+     1>_PrepareForClean:
+         Deleting file "Debug\VirtualWorld.lastbuildstate".
+     1>Done Building Project "E:\project\v-world\VirtualWorld\VirtualWorld.vcxproj" (clean target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.00
+Time Elapsed 00:00:00.03

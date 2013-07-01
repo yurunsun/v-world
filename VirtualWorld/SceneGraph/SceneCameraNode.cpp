@@ -11,12 +11,13 @@ void VirtualWorld::CSceneCameraNode::UpdateViewPort()
 {
 	int width = (int)(m_Rect.right - m_Rect.left);
 	int height = (int)(m_Rect.bottom - m_Rect.top);
-	float aspect = (float)(width / height);
+	double aspect = (double)(width / height);
 	
-	glViewport(m_Rect.left, m_Rect.top, width, height);
+	
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluPerspective(m_Fovy, aspect, m_ZNear, m_ZFar);
+	glViewport(0, 0, width, height);
 	glMatrixMode(GL_MODELVIEW);
 }
 

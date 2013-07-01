@@ -42,16 +42,13 @@
     <ClInclude Include="Appearance\Material.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Geometry\GeometryOBJObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Geometry\Geometry3DSObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SceneGraph\SceneCameraNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SceneGraph\SceneLightNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry\GeometryModelObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -80,16 +77,13 @@
     <ClCompile Include="Appearance\Material.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Geometry\GeometryOBJObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Geometry\Geometry3DSObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SceneGraph\SceneCameraNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SceneGraph\SceneLightNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Geometry\GeometryModelObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
